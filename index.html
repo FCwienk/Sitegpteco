@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pintor Profissional</title>
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#222}
+.container{max-width:1100px;margin:auto;padding:20px}
+.hero{background:#111;color:#fff;padding:80px 20px;text-align:center}
+.btn{display:inline-block;background:#25D366;color:#fff;padding:15px 25px;border-radius:30px;text-decoration:none;font-weight:bold}
+.section{padding:60px 20px;text-align:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px 20px;border-radius:50px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<script>
+const CONFIG={
+nome:"Carlos Pintor",
+cidade:"Belo Horizonte",
+telefone:"5531999999999",
+msg:"Olá, quero um orçamento de pintura"
+}
+</script>
+
+<section class="hero">
+<h1 id="headline"></h1>
+<p>Acabamento profissional, sem sujeira e com prazo garantido</p>
+<a id="btn1" class="btn">Pedir orçamento</a>
+</section>
+
+<section class="section">
+<h2>Serviços</h2>
+<div class="cards">
+<div class="card">Pintura residencial</div>
+<div class="card">Cimento queimado</div>
+<div class="card">Efeito mármore</div>
+<div class="card">Grafiato</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Por que escolher</h2>
+<div class="cards">
+<div class="card">Sem sujeira</div>
+<div class="card">Prazo garantido</div>
+<div class="card">Preço justo</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Peça seu orçamento</h2>
+<form id="form">
+<input type="text" id="nome" placeholder="Seu nome" required><br><br>
+<select id="servico">
+<option>Pintura</option>
+<option>Cimento queimado</option>
+</select><br><br>
+<button class="btn">Enviar</button>
+</form>
+</section>
+
+<a id="btn2" class="whatsapp">WhatsApp</a>
+
+<script>
+const link=`https://wa.me/${CONFIG.telefone}?text=${encodeURIComponent(CONFIG.msg)}`;
+
+document.getElementById("headline").innerText=`Pintor em ${CONFIG.cidade} com acabamento profissional`;
+
+document.getElementById("btn1").href=link;
+document.getElementById("btn2").href=link;
+
+document.getElementById("form").addEventListener("submit",function(e){
+e.preventDefault();
+const nome=document.getElementById("nome").value;
+const servico=document.getElementById("servico").value;
+const msg=`Olá, sou ${nome} e quero orçamento de ${servico}`;
+window.open(`https://wa.me/${CONFIG.telefone}?text=${encodeURIComponent(msg)}`);
+});
+</script>
+
+</body>
+</html>
