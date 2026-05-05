@@ -6,68 +6,106 @@
 <title>Modelo Premium Pintor</title>
 
 <style>
-body{font-family:Arial,sans-serif;margin:0;color:#222}
-.container{max-width:1100px;margin:auto;padding:20px}
-.hero{background:#111;color:#fff;padding:80px 20px;text-align:center}
-.hero h1{font-size:32px;margin-bottom:10px}
-.hero p{opacity:.9;margin-bottom:20px}
-.btn{display:inline-block;background:#25D366;color:#fff;padding:15px 25px;border-radius:30px;text-decoration:none;font-weight:bold}
-.section{padding:60px 20px;text-align:center}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.card{background:#fff;padding:25px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
-.dark{background:#111;color:#fff}
-.testimonial{font-style:italic}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px 20px;border-radius:50px;font-weight:bold}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0f0f0f;color:#fff}
+.container{max-width:1200px;margin:auto;padding:20px}
+
+.hero{height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1562259949-e8e7689d7828');background-size:cover;background-position:center}
+.hero h1{font-size:42px;max-width:700px;margin-bottom:20px}
+.hero p{font-size:18px;opacity:.9;margin-bottom:30px}
+
+.btn{background:#25D366;color:#fff;padding:16px 30px;border-radius:40px;text-decoration:none;font-weight:bold;transition:.3s}
+.btn:hover{transform:scale(1.05)}
+
+.section{padding:80px 20px;background:#fff;color:#222}
+.section.dark{background:#111;color:#fff}
+.section h2{text-align:center;margin-bottom:50px;font-size:28px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.card{background:#fff;color:#222;padding:25px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);text-align:center}
+.dark .card{background:#1c1c1c;color:#fff}
+
+.card strong{display:block;margin-top:10px}
+
+.cta{background:#25D366;color:#fff;text-align:center;padding:60px 20px}
+.cta h2{margin-bottom:20px}
+
+form input, form select{
+width:100%;max-width:320px;padding:14px;margin-bottom:15px;border-radius:8px;border:none
+}
+
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:15px 22px;border-radius:50px;font-weight:bold;text-decoration:none}
+
+@media(max-width:600px){
+.hero h1{font-size:28px}
+}
 </style>
 </head>
 <body>
 
 <script>
 const CONFIG={
-nome:"Carlos Pintor",
+nome:"Nome do Pintor",
 cidade:"Belo Horizonte",
 telefone:"5531999999999",
-msg:"Olá, quero um orçamento",
-servicos:["Pintura residencial","Cimento queimado","Efeito mármore","Grafiato"],
+msg:"Olá, quero um orçamento de pintura",
+servicos:[
+"Pintura residencial",
+"Pintura predial",
+"Pintura em altura",
+"Cimento queimado",
+"Grafiato e texturas",
+"Reformas e acabamento"
+],
+diferenciais:[
+"Sem sujeira durante o serviço",
+"Cumprimento de prazo garantido",
+"Acabamento profissional",
+"Atendimento rápido no WhatsApp",
+"Orçamento transparente"
+],
 depoimentos:[
-"Serviço impecável, super recomendo",
-"Pontual e deixou tudo limpo",
-"Melhor pintor que já contratei"
+"Serviço impecável, recomendo demais",
+"Pontual e muito caprichoso",
+"Melhor profissional que já contratei"
 ]
 }
 </script>
 
 <section class="hero">
 <h1 id="headline"></h1>
-<p>Sem sujeira • Prazo garantido • Acabamento profissional</p>
+<p>Acabamento profissional • Sem sujeira • Prazo garantido</p>
 <a id="btnHero" class="btn">Pedir orçamento no WhatsApp</a>
 </section>
 
 <section class="section">
+<div class="container">
 <h2>Serviços</h2>
-<div class="cards" id="servicos"></div>
+<div class="grid" id="servicos"></div>
+</div>
 </section>
 
 <section class="section dark">
+<div class="container">
 <h2>Por que escolher</h2>
-<div class="cards">
-<div class="card">✔ Sem sujeira</div>
-<div class="card">✔ Cumpre prazo</div>
-<div class="card">✔ Preço justo</div>
+<div class="grid" id="diferenciais"></div>
 </div>
 </section>
 
 <section class="section">
+<div class="container">
 <h2>Depoimentos</h2>
-<div class="cards" id="depoimentos"></div>
+<div class="grid" id="depoimentos"></div>
+</div>
 </section>
 
-<section class="section dark">
-<h2>Peça seu orçamento agora</h2>
+<section class="cta">
+<h2>Solicite seu orçamento agora</h2>
 <form id="form">
-<input type="text" id="nome" placeholder="Seu nome" required><br><br>
-<select id="servico"></select><br><br>
-<button class="btn">Receber orçamento</button>
+<input type="text" id="nome" placeholder="Seu nome" required>
+<select id="servico"></select>
+<br>
+<button class="btn">Receber orçamento no WhatsApp</button>
 </form>
 </section>
 
@@ -75,7 +113,7 @@ depoimentos:[
 
 <script>
 // headline
-document.getElementById("headline").innerText=`Pintor em ${CONFIG.cidade} com acabamento profissional`;
+ document.getElementById("headline").innerText=`Pintor em ${CONFIG.cidade} com acabamento profissional`;
 
 // whatsapp
 const link=`https://wa.me/${CONFIG.telefone}?text=${encodeURIComponent(CONFIG.msg)}`;
@@ -83,27 +121,33 @@ document.getElementById("btnHero").href=link;
 document.getElementById("btnFloat").href=link;
 
 // serviços
-const servicosDiv=document.getElementById("servicos");
+const sDiv=document.getElementById("servicos");
 const select=document.getElementById("servico");
 CONFIG.servicos.forEach(s=>{
-servicosDiv.innerHTML+=`<div class="card">${s}</div>`;
+sDiv.innerHTML+=`<div class="card"><strong>${s}</strong></div>`;
 select.innerHTML+=`<option>${s}</option>`;
+});
+
+// diferenciais
+const dDiv=document.getElementById("diferenciais");
+CONFIG.diferenciais.forEach(d=>{
+dDiv.innerHTML+=`<div class="card">${d}</div>`;
 });
 
 // depoimentos
 const depDiv=document.getElementById("depoimentos");
 CONFIG.depoimentos.forEach(d=>{
-depDiv.innerHTML+=`<div class="card testimonial">"${d}"</div>`;
+depDiv.innerHTML+=`<div class="card">"${d}"</div>`;
 });
 
 // form
-document.getElementById("form").addEventListener("submit",function(e){
-e.preventDefault();
-const nome=document.getElementById("nome").value;
-const servico=document.getElementById("servico").value;
-const msg=`Olá, meu nome é ${nome} e quero orçamento de ${servico}`;
-window.open(`https://wa.me/${CONFIG.telefone}?text=${encodeURIComponent(msg)}`);
-});
+ document.getElementById("form").addEventListener("submit",function(e){
+ e.preventDefault();
+ const nome=document.getElementById("nome").value;
+ const servico=document.getElementById("servico").value;
+ const msg=`Olá, meu nome é ${nome} e quero orçamento de ${servico}`;
+ window.open(`https://wa.me/${CONFIG.telefone}?text=${encodeURIComponent(msg)}`);
+ });
 </script>
 
 </body>
